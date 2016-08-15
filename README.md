@@ -1,4 +1,5 @@
 # unique_item_attributes_validator
+[![codecov](https://codecov.io/gh/equalize-squad/unique_item_attributes_validator/branch/master/graph/badge.svg)](https://codecov.io/gh/equalize-squad/unique_item_attributes_validator)
 
 A simple validator to verify the uniqueness of certain attributes from a collection.
 Should be compatible with all latest Rubies.
