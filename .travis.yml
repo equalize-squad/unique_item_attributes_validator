@@ -1,0 +1,10 @@
+language: ruby
+sudo: false
+cache:
+  bundler: true
+notifications:
+  email:
+  - diego.domingues16@gmail.com, rogerio.alcantara@gmail.com
+branches:
+  only:
+  - master
