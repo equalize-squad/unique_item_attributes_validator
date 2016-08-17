@@ -1,15 +1,8 @@
 require "active_model/validations"
 
-# ActiveModel Rails module.
 module ActiveModel
-  # ActiveModel::Validations Rails module. Contains all the default validators.
   module Validations
-    # Unique Item Attributes Validator. Inherits from ActiveModel::EachValidator.
-    #
-    # Responds to the regular validator API method `#validate_each`.
     class UniqueItemAttributesValidator < ActiveModel::EachValidator
-      # The actual validator method. It is called when ActiveRecord iterates
-      # over all the validators.
       def validate_each(record, _attribute, value)
         raise ArgumentError, ":#{value} must be an enumerable" unless value.is_a? Enumerable
         collection = remove_items_marked_for_destruction(value)
@@ -28,11 +21,9 @@ module ActiveModel
       end
 
       def collect_duplication(collection, attribute)
-        collection.
-          group_by { |item| item.send(attribute) }.
+        collection.group_by { |item| item.send(attribute) }.
           select { |_key, values| values.size > 1 }.
-          collect { |_key, values| values.slice(1, values.size) }.
-          flatten
+          flat_map { |_key, values| values.slice(1, values.size) }
       end
 
       def remove_items_marked_for_destruction(collection)
