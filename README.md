@@ -61,11 +61,11 @@ class SuperTeam
 
   attr_accessor :heroes
 
+  validates :heroes, unique_item_attributes: [:alter_ego, :name] #YAY!
+
   def initialize(heroes:)
     @heroes = heroes
   end
-
-  validates :heroes, unique_item_attributes: [:alter_ego, :name] #YAY!
 end
 ```
 

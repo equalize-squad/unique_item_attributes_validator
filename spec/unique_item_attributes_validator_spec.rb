@@ -2,7 +2,6 @@ require "spec_helper"
 
 class Hero
   include ActiveModel::Validations
-
   attr_accessor :alter_ego, :name, :superpower
 
   def initialize(alter_ego:, name:, superpower:)
@@ -14,14 +13,13 @@ end
 
 class SuperTeam
   include ActiveModel::Validations
-
   attr_accessor :heroes
+
+  validates :heroes, unique_item_attributes: [:alter_ego, :name]
 
   def initialize(heroes:)
     @heroes = heroes
   end
-
-  validates :heroes, unique_item_attributes: [:alter_ego, :name]
 end
 
 ATTRIBUTES_TO_BE_CHECKED = [:alter_ego, :name].freeze
